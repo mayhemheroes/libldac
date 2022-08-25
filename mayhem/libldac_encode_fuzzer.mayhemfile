@@ -1,0 +1,4 @@
+project: PROJECT
+target: libldac_encode_fuzzer
+cmds:
+- cmd: /out/libldac_encode_fuzzer
