@@ -19,7 +19,7 @@ FROM gcr.io/oss-fuzz-base/base-builder
 RUN apt-get update && apt-get install -y automake libtool
 COPY . libldac
 RUN rm -rf libldac/mayhem
-RUN svn export https://github.com/mozillasecurity/fuzzdata.git/trunk/samples/wav corpora
+RUN mkdir -p corpora && python3 -c 'import struct,os; d=bytes(128); wav=struct.pack(chr(60)+"4sI4s",b"RIFF",36+len(d),b"WAVE")+struct.pack(chr(60)+"4sIHHIIHH",b"fmt ",16,1,2,48000,192000,4,16)+struct.pack(chr(60)+"4sI",b"data",len(d))+d; open("corpora/seed.wav","wb").write(wav)'
 
 WORKDIR libldac
 

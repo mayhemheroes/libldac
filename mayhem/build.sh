@@ -15,7 +15,10 @@
 #
 ################################################################################
 
-$CC $CFLAGS -Iinc -c $SRC/libldac_encode_fuzzer.cc -o libldac_encode_fuzzer.o
+export CFLAGS="$CFLAGS -gdwarf-4"
+export CXXFLAGS="$CXXFLAGS -gdwarf-4"
+
+$CXX $CXXFLAGS -Iinc -c $SRC/libldac_encode_fuzzer.cc -o libldac_encode_fuzzer.o
 $CC $CFLAGS -Iinc -c src/ldaclib.c -o src/ldaclib.o
 $CC $CFLAGS -Iinc -c src/ldacBT.c -o src/ldacBT.o
 
